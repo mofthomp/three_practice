@@ -87,12 +87,13 @@
     const loader = new THREE.FontLoader();
     loader.load('js/examples/helvetiker_regular.typeface.json', (font) => {
       const text = 'wow!!!!';
-      const loader = new THREE.TextBufferGeometry(text, {font: font, size: 4, height: 0.2, curveSegments: 12, bevelEnabled: true, bevelThickness: 0.15, bevelSize: 0.3, bevelSize: 0.3, bevelSegments: 5});
+      const loader = new THREE.TextBufferGeometry(text, {font: font, size: 0.5, height: 0.2, curveSegments: 12, bevelEnabled: true, bevelThickness: 0.15, bevelSize: 0.3, bevelSize: 0.05, bevelSegments: 5});
     
     
     const material6 = new THREE.MeshNormalMaterial();
     const text_geom = new THREE.Mesh(loader, material6);
-    text_geom.position.x = -2;
+    text_geom.position.z = 2;
+    text_geom.position.x = -1;
     scene.add(text_geom);
     });
 
