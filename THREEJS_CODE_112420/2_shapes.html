@@ -10,6 +10,7 @@
   <script type="module">
     import * as THREE from './js/build/three.module.js'
     import { OrbitControls } from './js/examples/jsm/controls/OrbitControls.js'
+   
 
 
     let wireframe = false; //true; 
@@ -42,7 +43,7 @@
     // some POINTS (called "geometry") that define the object
     // a MATERIAL that defines how the faces of the geometry are rendered
     const geometry1 = new THREE.BoxGeometry();
-    const material1 = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const material1 = new THREE.MeshBasicMaterial({ color: 'maroon' });
 
     //you put these together by making a MESH
     const cube = new THREE.Mesh(geometry1, material1);
@@ -55,33 +56,45 @@
       // under https://threejs.org/docs/ for examples):
 
     //sphere
-    const geometry2 = new THREE.SphereGeometry(0.75, 8, 8); //radius, resX, resY
-    const material2 = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const geometry2 = new THREE.SphereGeometry(0.75, 20, 20); //radius, resX, resY
+    const material2 = new THREE.MeshBasicMaterial({ color: 0xffccff});
     const sphere = new THREE.Mesh(geometry2, material2);
     sphere.position.x = -2; //move it to the left
     scene.add(sphere);
 
     //knot
-    const geometry3 = new THREE.TorusKnotGeometry(0.6, 0.1, 32, 4);
-    const material3 = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    const geometry3 = new THREE.TorusKnotGeometry(0.6, 0.1, 40, 80);
+    const material3 = new THREE.MeshBasicMaterial({ color: 0xbcd9ff });
     const knot = new THREE.Mesh(geometry3, material3);
     knot.position.x = 2; //move it to the right
     scene.add(knot);
 
     //torus
-    const geometry4 = new THREE.TorusGeometry(0.6, .1, 8, 8);
-    const material4 = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const geometry4 = new THREE.TorusGeometry(0.6, .1, 20, 20);
+    const material4 = new THREE.MeshBasicMaterial({ color: 0xffff99 });
     const torus = new THREE.Mesh(geometry4, material4);
     torus.position.y = 2; //move it up
     scene.add(torus);
 
-    //torus
+    //dodecahedron
     const geometry5 = new THREE.DodecahedronGeometry(.75);
-    const material5 = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+    const material5 = new THREE.MeshBasicMaterial({ color: 0xccffcc });
     const dodecahedron = new THREE.Mesh(geometry5, material5);
     dodecahedron.position.y = -2; //move it down
     scene.add(dodecahedron);
 
+    //text
+    const loader = new THREE.FontLoader();
+    loader.load('helvetiker_regular.typeface.json', (font) => {
+      const text = 'wow!!!!';
+      const loader = new THREE.TextBufferGeometry(text, {font: font, size: 4, height: 0.2, curveSegments: 12, bevelEnabled: true, bevelThickness: 0.15, bevelSize: 0.3, bevelSize: 0.3, bevelSegments: 5});
+    
+    
+    const material6 = new THREE.MeshNormalMaterial();
+    const text_geom = new THREE.Mesh(loader, material6);
+    text_geom.position.x = -2;
+    scene.add(text_geom);
+    });
 
     //setting the mesh material to "wireframe = true" can make it easier to see the faces of the geometry 
     if (wireframe) {
